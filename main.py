@@ -1,6 +1,6 @@
 from ingestion.web_scrape import WebScrape
 
-
+# figure out if should be REST API. Consider GraohQL
 def main():
     target_url = "https://runescape.wiki/"
 
