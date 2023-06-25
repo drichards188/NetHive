@@ -17,24 +17,24 @@ def get_coin_price(coin_id):
                 print(f'{coin} is at {price[currency]} {currency}')
                 return {"price": {"price": price[currency], "currency": currency}}
 
-i = 0
-coin_data = {}
-while i < 10:
-    target_coin = coingecko_coin_list[i]["id"]
-    result = get_coin_price(target_coin)
-    if result:
-        coin_data[target_coin] = result
-    else:
-        print(f'--> no result for {target_coin}')
-    i += 1
-print(f"--> coin data is {len(coin_data)} long")
-
-message = bytes(json.dumps(coin_data), 'utf-8')
-
-try:
-    channel = get_pika_channel()
-    channel.basic_publish(exchange='finance', routing_key='coin', body=message)
-
-    channel.close()
-except Exception as e:
-    print(f'--> error: {e}')
+# i = 0
+# coin_data = {}
+# while i < 10:
+#     target_coin = coingecko_coin_list[i]["id"]
+#     result = get_coin_price(target_coin)
+#     if result:
+#         coin_data[target_coin] = result
+#     else:
+#         print(f'--> no result for {target_coin}')
+#     i += 1
+# print(f"--> coin data is {len(coin_data)} long")
+#
+# message = bytes(json.dumps(coin_data), 'utf-8')
+#
+# try:
+#     channel = get_pika_channel()
+#     channel.basic_publish(exchange='finance', routing_key='coin', body=message)
+#
+#     channel.close()
+# except Exception as e:
+#     print(f'--> error: {e}')

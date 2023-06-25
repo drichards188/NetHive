@@ -34,7 +34,7 @@ def produce():
 
     try:
         channel = get_pika_channel()
-        channel.basic_publish(exchange='finance', routing_key='coin.price', body=message)
+        channel.basic_publish(exchange='finance', routing_key='coin', body=message)
 
         channel.close()
     except Exception as e:
