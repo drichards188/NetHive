@@ -1,9 +1,9 @@
 import json
-from coin_list import coingecko_coin_list
 
 import requests
 
 from databus.emit_log_topic import get_pika_channel
+from ingestion.coin_list import coingecko_coin_list
 
 
 def get_coin_price(coin_id):
@@ -33,8 +33,8 @@ message = bytes(json.dumps(coin_data), 'utf-8')
 
 try:
     channel = get_pika_channel()
-    channel.basic_publish(exchange='finance', routing_key='coin.price', body=message)
-    
+    channel.basic_publish(exchange='finance', routing_key='coin', body=message)
+
     channel.close()
 except Exception as e:
     print(f'--> error: {e}')
