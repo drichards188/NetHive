@@ -16,6 +16,7 @@ class ProcessPage:
         most_occur = ""
         i = 0
 
+        # getting unprocessable doc from selenium
         for el in element_types:
             try:
                 elements = page_soup.find_all(el)
