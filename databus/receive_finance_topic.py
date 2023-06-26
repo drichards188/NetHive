@@ -34,6 +34,8 @@ def consume_finance():
 
     def callback(ch, method, properties, body):
         time.sleep(1)
+        # pull each coin off wire and aggregate then calculate standard deviation with pandas
+        # the big question is how to persist the data in this setup
         print("<--%r [x] %r:%r \n" % (server_id, method.routing_key, body))
         # process_coin_batch(body)
 

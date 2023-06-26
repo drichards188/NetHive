@@ -22,13 +22,13 @@ def produce():
         channel = get_pika_channel()
         i = 0
         coin_data = {}
-        while i < 10:
+        while i < 20:
             target_coin = coingecko_coin_list[i]["id"]
             result = get_coin_price(target_coin)
             if result:
                 message = bytes(json.dumps(result), 'utf-8')
                 channel.basic_publish(exchange='finance', routing_key='coin', body=message)
-                # coin_data[target_coin] = result
+                coin_data[target_coin] = result
             else:
                 print(f'--> no result for {target_coin}')
             i += 1
