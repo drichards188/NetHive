@@ -43,5 +43,3 @@ def consume_finance():
 
     channel.start_consuming()
 
-
-# consume_finance()
