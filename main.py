@@ -18,23 +18,21 @@ from ingestion.web_scrape import WebScrape
 # main()
 
 def produce():
-    i = 0
-    coin_data = {}
-    while i < 10:
-        target_coin = coingecko_coin_list[i]["id"]
-        result = get_coin_price(target_coin)
-        if result:
-            coin_data[target_coin] = result
-        else:
-            print(f'--> no result for {target_coin}')
-        i += 1
-    print(f"--> coin data is {len(coin_data)} long")
-
-    message = bytes(json.dumps(coin_data), 'utf-8')
-
     try:
         channel = get_pika_channel()
-        channel.basic_publish(exchange='finance', routing_key='coin', body=message)
+        i = 0
+        coin_data = {}
+        while i < 10:
+            target_coin = coingecko_coin_list[i]["id"]
+            result = get_coin_price(target_coin)
+            if result:
+                message = bytes(json.dumps(result), 'utf-8')
+                channel.basic_publish(exchange='finance', routing_key='coin', body=message)
+                # coin_data[target_coin] = result
+            else:
+                print(f'--> no result for {target_coin}')
+            i += 1
+        print(f"--> coin data is {len(coin_data)} long")
 
         channel.close()
     except Exception as e:

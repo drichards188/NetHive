@@ -35,7 +35,7 @@ def consume_finance():
     def callback(ch, method, properties, body):
         time.sleep(1)
         print("<--%r [x] %r:%r \n" % (server_id, method.routing_key, body))
-        process_coin_batch(body)
+        # process_coin_batch(body)
 
     # how to return data more than once? a return statement will stop the function
     channel.basic_consume(
