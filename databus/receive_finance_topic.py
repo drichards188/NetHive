@@ -28,7 +28,7 @@ def consume_finance():
 
     for binding_key in binding_keys:
         channel.queue_bind(
-            exchange='finance', queue=queue_name, routing_key='coin')
+            exchange='finance', queue=queue_name, routing_key='coin.*')
 
     print(' [*] Waiting for data. To exit press CTRL+C')
 

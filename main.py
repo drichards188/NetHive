@@ -27,7 +27,7 @@ def produce():
             result = get_coin_price(target_coin)
             if result:
                 message = bytes(json.dumps(result), 'utf-8')
-                channel.basic_publish(exchange='finance', routing_key='coin', body=message)
+                channel.basic_publish(exchange='finance', routing_key='coin.data', body=message)
                 coin_data[target_coin] = result
             else:
                 print(f'--> no result for {target_coin}')

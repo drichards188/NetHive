@@ -1,6 +1,9 @@
 import pandas as pd
 
 
+# to integrate this into the microservices there would have to be some centralized storage
+# the data could be added to at any time by any number of servers
+
 # group data into pandas dataframe and calculate standard deviation
 def process_dispersion(data: dict):
     prepared_data = prepare_data(data)
@@ -8,12 +11,14 @@ def process_dispersion(data: dict):
     df = pd.DataFrame.from_dict(prepared_data, orient='index')
     print(df.describe())
 
+
 def prepare_data(data: dict) -> dict:
     prepared_data = {}
     for coin in data:
         coin_price = data[coin]["price"]["price"]
         prepared_data[coin] = coin_price
     return prepared_data
+
 
 coin_data = {
     '01coin': {'price': {'price': 0.00036246, 'currency': 'usd'}},
