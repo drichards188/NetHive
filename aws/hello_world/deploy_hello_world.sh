@@ -1,8 +1,10 @@
 cd package
-zip -r ../my_deployment_package.zip .
+
+zip -r ../hello_world_deploy.zip .
 
 cd ..
-zip my_deployment_package.zip lambda_function.py
 
-mv my_deployment_package.zip ../../deploy
+zip hello_world_deploy lambda_function.py
+
+mv hello_world_deploy.zip ../../deploy
 

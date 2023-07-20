@@ -5,9 +5,12 @@ from dataclasses import dataclass
 from typing import List
 
 import pandas as pd
+
+
 @dataclass
-class awsEvent:
+class AwsEvent:
     Records: List[object]
+
 
 def lambda_handler(event, context):
     record = event['Records'][0]
@@ -22,7 +25,8 @@ def lambda_handler(event, context):
 
     print(f'--> {df.head()}')
 
+
 if __name__ == "__main__":
-    event: object = {'Records':[{'body': '{"user": "david"}'}]}
+    event: object = {'Records': [{'body': '{"user": "david"}'}]}
     context: object = {}
     lambda_handler(event, context)
